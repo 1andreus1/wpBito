@@ -6,7 +6,7 @@ from settings import (
     USER,
     PASSWORD
 )
-from utils import get_url, HTTPMethod, DecodeTo
+from src.utils.utils import get_url, HTTPMethod, DecodeTo
 
 creds = f'{USER}:{PASSWORD}'
 token = base64.b64encode(creds.encode())
