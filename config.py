@@ -1,5 +1,7 @@
 from os import path
 
+ENCODING = 'utf-8'
+
 BASE_DIR = path.dirname(path.abspath(__file__))
 
 """
@@ -8,9 +10,15 @@ BASE_DIR = path.dirname(path.abspath(__file__))
 
 STATIC_PATH = 'static'
 
-YA_CONFIG_FILE = 'ya_config.txt'
+PARAMS_HINTS_FILE = 'params_hints.json'
+ACCOUNTS_FILE = 'accounts.json'
+PHRASES_FILE = 'phrases.json'
+HINTS_FILE = 'hints.json'
 
-TG_CHANNELS_ABS_PATH = path.join(BASE_DIR, STATIC_PATH, YA_CONFIG_FILE)
+PARAMS_HINTS_FILE_ABS_PATH = path.join(BASE_DIR, STATIC_PATH, PARAMS_HINTS_FILE)
+ACCOUNTS_FILE_ABS_PATH = path.join(BASE_DIR, STATIC_PATH, ACCOUNTS_FILE)
+PHRASES_FILE_ABS_PATH = path.join(BASE_DIR, STATIC_PATH, PHRASES_FILE)
+HINTS_FILE_ABS_PATH = path.join(BASE_DIR, STATIC_PATH, HINTS_FILE)
 
 """
 Логи
@@ -26,7 +34,6 @@ LOG_ABS_PATH = path.join(BASE_DIR, LOG_FILES_PATH, LOG_FILE)
 '''
 LOG_FORMAT = '{time} | {level} | {message}'
 LOG_ROTATION = '10 MB'
-
 
 """
 Авторизационные данные для wp.

@@ -1,37 +1,62 @@
 import json
 
+from config import (
+    ENCODING,
+    PARAMS_HINTS_FILE_ABS_PATH,
+    ACCOUNTS_FILE_ABS_PATH,
+    PHRASES_FILE_ABS_PATH, HINTS_FILE_ABS_PATH,
+)
+from src.utils.utils import load_json_file
 
-def load_accounts():
-    accounts_filepath = "accounts.json"
-    with open(accounts_filepath) as file:
-        json_data = json.load(file)
-    
-    data = [list(account.values()) for account in json_data.values()]
-    return data
 
-def load_ya_config():
-    ya_config_filepath = "ya_config.json"
-    with open(ya_config_filepath) as file:
-        json_data = json.load(file)
-    
-    cookies, headers, params = json_data["cookies"], json_data["headers"], json_data["params"]
-    
-    return cookies, headers, params
+def load_hints_params() -> dict:
+    """
+    Загружает параметры запроса для получения подсказок.
 
-def load_phrases():
-    phrases_filepath = "./phrases.json"
-    with open(phrases_filepath, encoding='utf-8') as file:
-        phrases = json.load(file)
+    :return: (dict) параметры запроса.
+    """
+    return load_json_file(
+        PARAMS_HINTS_FILE_ABS_PATH
+    )
+
+
+def load_accounts() -> list:
+    json_data = load_json_file(
+        ACCOUNTS_FILE_ABS_PATH
+    )
+
+    return [
+        list(account.values()) for account in json_data.values()
+    ]
+
+
+def load_phrases() -> dict:
+    phrases = load_json_file(
+        PHRASES_FILE_ABS_PATH
+    )
     return phrases
 
-def save_hints(hints, append_mode=True):
-    hints_filepath = "./hints.json"
-    file_mode = "w+" if append_mode else "w"
-    with open(hints_filepath, mode=file_mode, encoding='utf-8') as file:
-        hints = json.dump(hints, file, ensure_ascii=False, sort_keys=False, indent=4, separators=(',', ': '))
-    
-def load_hints():
-    hints_filepath = "./hints.json"
-    with open(hints_filepath, encoding='utf-8') as file:
-        hints = json.load(file)
+
+def load_hints() -> dict:
+    hints = load_json_file(
+        HINTS_FILE_ABS_PATH
+    )
     return hints
+
+
+def save_hints(hints, append_mode: bool = True):
+    file_mode = "w+" if append_mode else "w"
+
+    with open(
+            HINTS_FILE_ABS_PATH,
+            mode=file_mode,
+            encoding=ENCODING
+    ) as file:
+        json.dump(
+            hints,
+            file,
+            ensure_ascii=False,
+            sort_keys=False,
+            indent=4,
+            separators=(',', ': ')
+        )
