@@ -60,3 +60,17 @@ def save_hints(hints, append_mode: bool = True):
             indent=4,
             separators=(',', ': ')
         )
+
+
+if __name__ == '__main__':
+    """
+    Что-то вроде тестов.
+    """
+    hints_params = load_hints_params()
+    print('hints_params', hints_params, '\n')
+
+    phrases = load_phrases()
+    print('phrases', phrases, '\n')
+
+    hints = load_hints()
+    print('hints', hints, '\n')
